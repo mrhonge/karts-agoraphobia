@@ -1,11 +1,34 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
+import Modal from "../components/Modal";
+import { ModalContent } from "../components/ModalContent";
 
 export default function Home() {
+  // 모달 상태 관리
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentSection, setCurrentSection] = useState(null);
+
+  // 모달 열기 함수
+  const openModal = (sectionId) => {
+    setCurrentSection(sectionId);
+    setModalOpen(true);
+  };
+
+  // 모달 닫기 함수
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  // 현재 섹션의 모달 콘텐츠 가져오기
+  const { title, content } = currentSection 
+    ? ModalContent({ sectionId: currentSection })
+    : { title: "", content: null };
+
   return (
     <>
       <Head>
-        <title>아고라포비아 | 프로그램북</title>
+        <title>연극 아고라포비아 | 프로그램북</title>
         <meta name="description" content="아고라포비아 공연 프로그램북" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -18,7 +41,7 @@ export default function Home() {
             <img 
               src="/images/landing.jpg" 
               alt="아고라포비아 랜딩 이미지" 
-              className="section-image"
+              className="section-image landing-image"
             />
           </div>
 
@@ -27,9 +50,11 @@ export default function Home() {
             {/* 섹션 1: 들어가는 글 */}
             <div>
               <img 
-                src="/images/section1.jpg" 
+                src="/images/section1.png" 
                 alt="들어가는 글" 
-                className="section-image"
+                className="section-image section1-image"
+                onClick={() => openModal(1)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -38,7 +63,9 @@ export default function Home() {
               <img 
                 src="/images/section2.jpg" 
                 alt="작품 소개" 
-                className="section-image"
+                className="section-image section2-image"
+                onClick={() => openModal(2)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -47,7 +74,9 @@ export default function Home() {
               <img 
                 src="/images/section3.jpg" 
                 alt="작가의 글" 
-                className="section-image"
+                className="section-image section3-image"
+                onClick={() => openModal(3)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -56,7 +85,9 @@ export default function Home() {
               <img 
                 src="/images/section4.jpg" 
                 alt="드라마터그의 글" 
-                className="section-image"
+                className="section-image section4-image"
+                onClick={() => openModal(4)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -65,7 +96,9 @@ export default function Home() {
               <img 
                 src="/images/section5.jpg" 
                 alt="창작과정기록" 
-                className="section-image"
+                className="section-image section5-image"
+                onClick={() => openModal(5)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -74,7 +107,7 @@ export default function Home() {
               <img 
                 src="/images/section6.jpg" 
                 alt="배우프로필" 
-                className="section-image"
+                className="section-image section6-image"
               />
             </div>
 
@@ -83,7 +116,9 @@ export default function Home() {
               <img 
                 src="/images/section7.jpg" 
                 alt="나가는 글" 
-                className="section-image"
+                className="section-image section7-image"
+                onClick={() => openModal(7)}
+                style={{ cursor: 'pointer' }}
               />
             </div>
 
@@ -92,7 +127,7 @@ export default function Home() {
               <img 
                 src="/images/section8.jpg" 
                 alt="함께한 사람들" 
-                className="section-image"
+                className="section-image section8-image"
               />
             </div>
           </div>
@@ -112,6 +147,15 @@ export default function Home() {
           </footer>
         </main>
       </div>
+
+      {/* 모달 */}
+      <Modal 
+        isOpen={modalOpen} 
+        onClose={closeModal} 
+        title={title}
+      >
+        {content}
+      </Modal>
     </>
   );
 }
