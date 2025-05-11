@@ -1,38 +1,51 @@
-import styles from './ModalContent.module.css';
-
 export function ModalContent({ sectionId }) {
   // 여기에 각 섹션별 콘텐츠를 정의합니다
+  const styles = {
+    contentWrapper: {
+      fontFamily: "'Noto Sans KR', sans-serif"
+    },
+    contentTitle: {
+      fontSize: "1.5rem",
+      fontWeight: 600,
+      marginBottom: "8px",
+      color: "#333",
+      textAlign: "center"
+    },
+    authorInfo: {
+      fontSize: "0.9rem",
+      color: "#666",
+      marginBottom: "20px",
+      fontStyle: "italic",
+      textAlign: "right",
+      borderBottom: "1px solid #eee",
+      paddingBottom: "10px"
+    },
+    contentBody: {
+      lineHeight: 1.7,
+      fontSize: "1rem"
+    },
+    quote: {
+      margin: "24px 0",
+      padding: "16px 24px",
+      borderLeft: "4px solid #755E54",
+      backgroundColor: "rgba(246, 239, 233, 0.6)",
+      fontStyle: "italic",
+      position: "relative"
+    }
+  };
+
   const contents = {
     1: {
       title: "들어가는 글",
       author: "아고라포비아 제작진",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>프로그램북을 시작하며</h3>
-          <div className={styles.authorInfo}>연출 박지원 (연극원 연출과 예술사 21)</div>
-          <div className={styles.contentBody}>
-            <p>중학생 때 친구와 자주 명동에 갔습니다. 
-                둘이 합쳐 겨우 만오천 원이 안 되는 돈과 폴더폰만 든 채였습니다.
-                그때는 사람이 많은 광장 한가운데 서있어도 테러나 사고나 감염 따위를 
-                생각치 않을 수 있었습니다. </p>
-            <p>어리고 촌스러운 소녀였던 우리는 어느 가게에도 쉽사리 들어가지 못하고, 
-                그저 수많은 사람들이 만들어내는 파도에 이리저리 휩쓸려다니며 좁은 골목부터 
-                대로변까지 개방된 공간들을 고루 누볐습니다. 높고 거대하고 또 왠지모를 위압감이 
-                드는 건물들 사이에서, 인종도 성별도 나이도 너무나 다른 사람들을 바라보며 나는 
-                내가 한없이 작게 느껴졌고 그 감각이 오래오래 남을 만큼 인상적이었습니다. 
-                내가 틈입할 수 없는 공간과 온전히 누릴 수 있는 공간을 가르는 일. 
-                이런 분리의 경험이 저에게는 본격적인 도시 걷기-의 첫 기억입니다.</p>
-            <p>어른이 되면 점유할 수 있는 공간이 늘어날 것이기에 하루 빨리 성인이 되고싶다고 생각했습니다. 
-                하지만 지금 나는 퀴어 아이덴티티를 가지고선 광화문 광장에서 축제를 벌일 수 없고, 
-                장애인이 된다면 지하철 승강장을 점유하기 힘들 뿐더러, 난민으로서는 그 어떤 장소에도 소속될 수 없습니다. 
-                정체성의 가능성이 늘어날수록 나의 공간은 넓어지는 것이 아니라 점점 좁아집니다.</p>
-            <p>우리는 이런 상황에 그저 절망해야할까요? 가장 우리다운 방식으로 이 비좁은 공간을 넓혀가자고 마음먹었습니다. 
-                너무 퀴어해서 외면받던 이야기를 무대 위에 끌어올리는 방식으로, 무력함에 잠식되지 않은 채 웃고 즐기며 존재감을 뽐내는 방식으로.</p>   
-            <p>수많은 도시공간 속에서 이번에는 광장에 주목하려 합니다. 
-                수천년을 뛰어넘는 광장의 역사 속에서, 그 안에 포함될 수 있던 사랆은 누구고 광장에서마저 밀려난 사람은 누구인지, 
-                지금 우리 사회에서 열린 공간의 의미는 무엇인지 질문하고 함께 생각하고 싶습니다.</p> 
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>프로그램북을 시작하며</h3>
+          <div style={styles.authorInfo}>작성자: 아고라포비아 제작진</div>
+          <div style={styles.contentBody}>
+            <p>아고라포비아 프로그램북의 들어가는 글 내용입니다.</p>
             <p>공연을 준비하는 동안 자주 조지 버나드 쇼의 문장을 떠올렸습니다.</p>
-            <blockquote className={styles.quote}>
+            <blockquote style={styles.quote}>
               "My way of joking is to tell the truth. It's the funniest joke in the world."<br />
               제가 농담하는 방식은 진실을 말하는 거예요. 그게 세상에서 가장 웃긴 농담이거든요.
               <cite>- 조지 버나드 쇼 (George Bernard Shaw)</cite>
@@ -47,10 +60,10 @@ export function ModalContent({ sectionId }) {
       title: "작품 소개",
       author: "연출팀",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>아고라포비아란?</h3>
-          <div className={styles.authorInfo}>작성자: 연출팀</div>
-          <div className={styles.contentBody}>
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>아고라포비아란?</h3>
+          <div style={styles.authorInfo}>작성자: 연출팀</div>
+          <div style={styles.contentBody}>
             <p>아고라포비아 작품 소개 내용입니다.</p>
             <p>여기에 실제 내용을 추가해주세요. 본문 내용이 여기에 들어갑니다.</p>
             <p>작품의 주제, 배경, 특징 등을 상세히 설명할 수 있습니다.</p>
@@ -62,10 +75,10 @@ export function ModalContent({ sectionId }) {
       title: "작가의 글",
       author: "홍길동",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>작품을 쓰며</h3>
-          <div className={styles.authorInfo}>작성자: 홍길동</div>
-          <div className={styles.contentBody}>
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>작품을 쓰며</h3>
+          <div style={styles.authorInfo}>작성자: 홍길동</div>
+          <div style={styles.contentBody}>
             <p>아고라포비아 작가의 글 내용입니다.</p>
             <p>여기에 실제 내용을 추가해주세요. 본문 내용이 여기에 들어갑니다.</p>
             <p>작가로서의 고민, 작품에 담긴 메시지 등을 서술할 수 있습니다.</p>
@@ -77,10 +90,10 @@ export function ModalContent({ sectionId }) {
       title: "드라마터그의 글",
       author: "이몽룡",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>극작의 관점에서</h3>
-          <div className={styles.authorInfo}>작성자: 이몽룡</div>
-          <div className={styles.contentBody}>
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>극작의 관점에서</h3>
+          <div style={styles.authorInfo}>작성자: 이몽룡</div>
+          <div style={styles.contentBody}>
             <p>아고라포비아 드라마터그의 글 내용입니다.</p>
             <p>여기에 실제 내용을 추가해주세요. 본문 내용이 여기에 들어갑니다.</p>
             <p>극의 구성, 주제 분석, 문학적 의미 등을 설명할 수 있습니다.</p>
@@ -92,10 +105,10 @@ export function ModalContent({ sectionId }) {
       title: "창작과정기록",
       author: "제작팀",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>작품 제작 과정</h3>
-          <div className={styles.authorInfo}>작성자: 제작팀</div>
-          <div className={styles.contentBody}>
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>작품 제작 과정</h3>
+          <div style={styles.authorInfo}>작성자: 제작팀</div>
+          <div style={styles.contentBody}>
             <p>아고라포비아 창작과정기록 내용입니다.</p>
             <p>여기에 실제 내용을 추가해주세요. 본문 내용이 여기에 들어갑니다.</p>
             <p>기획부터 제작까지의 과정, 어려웠던 점, 극복 방법 등을 기술할 수 있습니다.</p>
@@ -107,10 +120,10 @@ export function ModalContent({ sectionId }) {
       title: "나가는 글",
       author: "아고라포비아 전체 팀",
       content: (
-        <div className={styles.contentWrapper}>
-          <h3 className={styles.contentTitle}>마치며</h3>
-          <div className={styles.authorInfo}>작성자: 아고라포비아 전체 팀</div>
-          <div className={styles.contentBody}>
+        <div style={styles.contentWrapper}>
+          <h3 style={styles.contentTitle}>마치며</h3>
+          <div style={styles.authorInfo}>작성자: 아고라포비아 전체 팀</div>
+          <div style={styles.contentBody}>
             <p>아고라포비아 나가는 글 내용입니다.</p>
             <p>여기에 실제 내용을 추가해주세요. 본문 내용이 여기에 들어갑니다.</p>
             <p>공연을 마친 소감, 관객에게 전하는 메시지, 앞으로의 계획 등을 담을 수 있습니다.</p>
