@@ -304,6 +304,18 @@ a {
   text-align: center;
 }
 
+.author-section {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.author-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
 .author-info {
   font-size: 0.9rem;
   color: #666;
