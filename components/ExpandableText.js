@@ -30,7 +30,7 @@ export default function ExpandableText({ text, maxHeight = 200, showMoreText = "
       
       {showButton && (
         <button 
-          className={styles.expandButton}
+          className={`${styles.expandButton} ${expanded ? styles.expanded : ''}`}
           onClick={toggleExpanded}
         >
           {expanded ? '접기' : showMoreText}
