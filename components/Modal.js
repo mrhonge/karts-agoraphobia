@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import styles from './Modal.module.css';
 
 export default function Modal({ isOpen, onClose, children, title }) {
   const modalRef = useRef(null);
@@ -29,7 +30,7 @@ export default function Modal({ isOpen, onClose, children, title }) {
 
   // 모달 외부 클릭 시 닫기
   const handleModalClick = (e) => {
-    if (e.target.className.includes('modal-overlay')) {
+    if (e.target.classList.contains(styles.modalOverlay)) {
       onClose();
     }
   };
@@ -38,28 +39,28 @@ export default function Modal({ isOpen, onClose, children, title }) {
 
   return (
     <div 
-      className="modal-overlay" 
+      className={styles.modalOverlay} 
       onClick={handleModalClick}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div 
-        className="modal-content"
+        className={styles.modalContent}
         ref={modalRef}
         tabIndex="-1"
       >
-        <div className="modal-header">
-          <h2 id="modal-title" className="modal-title">{title}</h2>
+        <div className={styles.modalHeader}>
+          <h2 id="modal-title" className={styles.modalTitle}>{title}</h2>
           <button 
-            className="close-button" 
+            className={styles.closeButton} 
             onClick={onClose}
             aria-label="모달 닫기"
           >
             &times;
           </button>
         </div>
-        <div className="modal-body">
+        <div className={styles.modalBody}>
           {children}
         </div>
       </div>

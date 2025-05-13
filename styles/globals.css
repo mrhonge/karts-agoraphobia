@@ -192,6 +192,10 @@ a {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease-out;
+  overflow: visible;
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 .animated-image-wrapper.visible {
@@ -204,10 +208,12 @@ a {
   height: auto;
   display: block;
   transition: transform 0.3s ease;
+  transform-origin: center;
 }
 
 .animated-image:hover {
   transform: scale(1.02);
+  z-index: 1;
 }
 
 /* 이미지 로딩 플레이스홀더 */
