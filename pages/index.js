@@ -28,7 +28,7 @@ export default function Home() {
           {/* 랜딩 페이지 */}
           <div className="landing-page">
             <OptimizedImage 
-              src="/images/landing.jpg" 
+              src="/images/landing.png" 
               alt="아고라포비아 랜딩 이미지" 
               className="section-image landing-image"
             />

@@ -122,34 +122,34 @@ export default function Section7() {
         <style jsx global>{globalStyles}</style>
         
         <AuthorSection 
+          title="무대디자인 노트"
           authorInfo="무대 디자이너 이동현 (연극원 무대미술과 예술사 22)"
           sectionIndex={1}
-          title="무대디자인 노트"
         >
           {stageDesignerContent}
         </AuthorSection>
 
         <AuthorSection 
+          title="조명디자인 노트"
           authorInfo="조명 디자이너 박나경 (연극원 무대미술과 전문사 21)"
           sectionIndex={2}
-          title="조명디자인 노트"
         >
           {lightingDesignerContent}
         </AuthorSection>
         
         <AuthorSection 
+          title="의상디자인 노트"
           authorInfo="의상 디자이너 신슬기 (연극원 무대미술과 예술사 22)"
           sectionIndex={3}
-          title="의상디자인 노트"
         >
           {costumeDesignerContent}
         </AuthorSection>
 
         <AuthorSection 
+          title="소품디자인 노트"
           authorInfo="소품 디자이너 이지현 (연극원 무대미술과 예술사 22)"
           isLast={true}
           sectionIndex={4}
-          title="소품디자인 노트"
         >
           {propsDesignerContent}
         </AuthorSection>
