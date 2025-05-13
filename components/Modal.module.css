@@ -19,6 +19,8 @@
   border-radius: 5px;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .modalHeader {
@@ -27,6 +29,10 @@
   align-items: center;
   padding: 15px 20px;
   border-bottom: 1px solid #ddd;
+  background-color: var(--background);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .modalTitle {
@@ -44,7 +50,9 @@
 }
 
 .modalBody {
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 /* 스크롤바 스타일링 */
