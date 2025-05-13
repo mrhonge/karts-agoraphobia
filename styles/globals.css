@@ -296,6 +296,27 @@ a {
   color: var(--foreground);
 }
 
+/* 소제목과 단락 사이 여백 및 구역 간 여백 */
+.content-body h3 {
+  margin-top: 30px;  /* 구역 간 여백 */
+  margin-bottom: 16px;  /* 소제목과 단락 사이 여백 */
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #333;
+}
+
+.content-body h3 strong {
+  color: #755E54;
+}
+
+.content-body div {
+  margin-bottom: 40px;  /* 구역 간 여백 */
+}
+
+.content-body div:last-child {
+  margin-bottom: 0;  /* 마지막 구역은 아래 여백 제거 */
+}
+
 .content-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -333,10 +354,11 @@ a {
 
 .content-body p {
   margin-bottom: 16px;
+  line-height: 1.7;
 }
 
-.content-body p:last-child {
-  margin-bottom: 0;
+.content-body p:last-of-type {
+  margin-bottom: 20px;  /* 단락과 다음 요소(이미지 등) 사이 여백 */
 }
 
 .quote {
@@ -367,6 +389,21 @@ a {
   
   .content-body {
     font-size: 0.95rem;
+  }
+  
+  .content-body h3 {
+    font-size: 1.05rem;
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+  
+  .content-body div {
+    margin-bottom: 35px;
+  }
+  
+  .content-body p {
+    margin-bottom: 14px;
+    line-height: 1.6;
   }
 }
 
@@ -442,5 +479,46 @@ a {
   .modal-content {
     width: 95%;
     max-height: 80vh;
+  }
+}
+
+/* 이미지 관련 스타일 */
+.reference-image-container {
+  margin: 25px 0;
+  text-align: center;
+}
+
+.reference-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.reference-image:hover {
+  transform: scale(1.02);
+}
+
+.image-caption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .reference-image {
+    max-width: 100%;
+  }
+  
+  .historical-image {
+    max-width: 100%;
+  }
+  
+  .image-caption {
+    font-size: 0.75rem;
   }
 }

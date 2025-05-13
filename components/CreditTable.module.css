@@ -1,0 +1,94 @@
+.creditContainer {
+  width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  background-color: transparent;
+  margin: 1rem 0;
+}
+
+.creditScroll {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.creditScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.creditRow {
+  display: grid;
+  grid-template-columns: minmax(60px, 0.8fr) minmax(60px, 0.8fr) minmax(120px, 2.4fr);
+  gap: 0;
+  background-color: transparent;
+  margin-bottom: 1px;
+  min-width: 500px;
+}
+
+.creditCell {
+  padding: 0.4rem 0.5rem;
+  background-color: transparent;
+  text-align: left;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  overflow: visible;
+  font-size: 0.9rem;
+  border: none;
+}
+
+.role {
+  font-weight: 600;
+  color: #755E54;
+  white-space: nowrap;
+}
+
+.name {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.department {
+  font-style: italic;
+  color: #666;
+  white-space: nowrap;
+}
+
+.creditRow:hover .creditCell {
+  background-color: rgba(246, 239, 233, 0.2);
+}
+
+.loading {
+  text-align: center;
+  padding: 1.5rem;
+  color: #755E54;
+}
+
+@media (max-width: 600px) {
+  .creditContainer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .creditContainer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .creditScroll {
+    max-height: 300px;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  @keyframes scrollHint {
+    0% { box-shadow: none; }
+    50% { box-shadow: none; }
+    100% { box-shadow: none; }
+  }
+  
+  .creditContainer {
+    animation: none;
+  }
+} 
