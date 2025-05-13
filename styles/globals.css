@@ -159,11 +159,19 @@ a {
     width: 80%; /* 원하는 너비로 조정 */
     max-width: 280px;
     box-sizing: content-box; /* 패딩을 너비에 포함하지 않도록 설정 */
+    /* 호버 효과가 잘리지 않도록 약간의 여백 추가 */
+    transform-origin: right center;
+    transition: transform 0.3s ease;
+  }
+  
+  /* 섹션 1 이미지 호버 효과 오버라이드 */
+  .section1-image.animated-image:hover {
+    transform: scale(1.02);
   }
   
   /* 모바일에서 section1-image를 포함하는 div에 오버플로우 숨김 속성 추가 */
   .modal-section > div:nth-child(1) {
-    overflow: hidden;
+    overflow: visible; /* hidden에서 visible로 변경 */
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -225,7 +233,7 @@ a {
 
 .animated-image:hover {
   transform: scale(1.02);
-  z-index: 1;
+  z-index: 10; /* z-index 값 증가 */
 }
 
 /* 이미지 로딩 플레이스홀더 */
