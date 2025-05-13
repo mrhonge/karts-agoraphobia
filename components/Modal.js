@@ -1,24 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import styles from './Modal.module.css';
 
 export default function Modal({ isOpen, onClose, children, title }) {
+  const modalRef = useRef(null);
+
   // ESC 키로 모달 닫기
   useEffect(() => {
     const handleEsc = (event) => {
-      if (event.keyCode === 27) onClose();
+      if (event.key === 'Escape') onClose();
     };
     
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden'; // 모달 열릴 때 스크롤 방지
     }
     
     return () => {
       document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = ''; // 모달 닫힐 때 스크롤 허용
     };
   }, [isOpen, onClose]);
+  
+  // 모달 열릴 때 포커스 이동
+  useEffect(() => {
+    if (isOpen && modalRef.current) {
+      modalRef.current.focus();
+    }
+  }, [isOpen]);
 
   // 모달 외부 클릭 시 닫기
   const handleModalClick = (e) => {
-    if (e.target.className === 'modal-overlay') {
+    if (e.target.className.includes('modal-overlay')) {
       onClose();
     }
   };
@@ -26,15 +38,29 @@ export default function Modal({ isOpen, onClose, children, title }) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={handleModalClick}>
-      <div className="modal-content">
-        <div className="modal-header">
-          <h2 className="modal-title">{title}</h2>
-          <button className="close-button" onClick={onClose}>
+    <div 
+      className={styles.modalOverlay} 
+      onClick={handleModalClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div 
+        className={styles.modalContent}
+        ref={modalRef}
+        tabIndex="-1"
+      >
+        <div className={styles.modalHeader}>
+          <h2 id="modal-title" className={styles.modalTitle}>{title}</h2>
+          <button 
+            className={styles.closeButton} 
+            onClick={onClose}
+            aria-label="모달 닫기"
+          >
             &times;
           </button>
         </div>
-        <div className="modal-body">
+        <div className={styles.modalBody}>
           {children}
         </div>
       </div>

@@ -1,25 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect } from "react";
 import Modal from "../components/Modal";
 import { ModalContent } from "../components/ModalContent";
-import { AnimatedImage } from '../components/AnimatedImage';
+import { OptimizedImage } from '../components/OptimizedImage';
+import sectionsData from '../data/sections';
+import { useModal } from '../contexts/ModalContext';
 
 export default function Home() {
-  // 모달 상태 관리
-  const [modalOpen, setModalOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState(null);
-
-  // 모달 열기 함수
-  const openModal = (sectionId) => {
-    setCurrentSection(sectionId);
-    setModalOpen(true);
-  };
-
-  // 모달 닫기 함수
-  const closeModal = () => {
-    setModalOpen(false);
-  };
+  const { modalOpen, currentSection, openModal, closeModal } = useModal();
 
   // 현재 섹션의 모달 콘텐츠 가져오기
   const { title, content } = currentSection 
@@ -39,7 +27,7 @@ export default function Home() {
         <main>
           {/* 랜딩 페이지 */}
           <div className="landing-page">
-            <AnimatedImage 
+            <OptimizedImage 
               src="/images/landing.jpg" 
               alt="아고라포비아 랜딩 이미지" 
               className="section-image landing-image"
@@ -50,9 +38,9 @@ export default function Home() {
           <div className="modal-section">
             {/* 섹션 1: 들어가는 글 */}
             <div>
-              <AnimatedImage 
-                src="/images/section1.png" 
-                alt="들어가는 글" 
+              <OptimizedImage 
+                src={sectionsData[1].imageUrl}
+                alt={sectionsData[1].title} 
                 className="section-image section1-image"
                 onClick={() => openModal(1)}
               />
@@ -60,9 +48,9 @@ export default function Home() {
 
             {/* 섹션 2: 작품 소개 */}
             <div>
-              <AnimatedImage 
-                src="/images/section2.jpg" 
-                alt="작품 소개" 
+              <OptimizedImage 
+                src={sectionsData[2].imageUrl}
+                alt={sectionsData[2].title} 
                 className="section-image section2-image"
                 onClick={() => openModal(2)}
               />
@@ -70,9 +58,9 @@ export default function Home() {
 
             {/* 섹션 3: 작가의 글 */}
             <div>
-              <AnimatedImage 
-                src="/images/section3.jpg" 
-                alt="작가의 글" 
+              <OptimizedImage 
+                src={sectionsData[3].imageUrl}
+                alt={sectionsData[3].title} 
                 className="section-image section3-image"
                 onClick={() => openModal(3)}
               />
@@ -80,9 +68,9 @@ export default function Home() {
 
             {/* 섹션 4: 드라마터그의 글 */}
             <div>
-              <AnimatedImage 
-                src="/images/section4.jpg" 
-                alt="드라마터그의 글" 
+              <OptimizedImage 
+                src={sectionsData[4].imageUrl}
+                alt={sectionsData[4].title} 
                 className="section-image section4-image"
                 onClick={() => openModal(4)}
               />
@@ -90,9 +78,9 @@ export default function Home() {
 
             {/* 섹션 5: 창작과정기록 */}
             <div>
-              <AnimatedImage 
-                src="/images/section5.jpg" 
-                alt="창작과정기록" 
+              <OptimizedImage 
+                src={sectionsData[5].imageUrl}
+                alt={sectionsData[5].title} 
                 className="section-image section5-image"
                 onClick={() => openModal(5)}
               />
@@ -100,18 +88,18 @@ export default function Home() {
 
             {/* 섹션 6: 배우프로필 */}
             <div>
-              <AnimatedImage 
-                src="/images/section6.jpg" 
-                alt="배우프로필" 
+              <OptimizedImage 
+                src={sectionsData[6].imageUrl}
+                alt={sectionsData[6].title} 
                 className="section-image section6-image"
               />
             </div>
 
             {/* 섹션 7: 나가는 글 */}
             <div>
-              <AnimatedImage 
-                src="/images/section7.jpg" 
-                alt="나가는 글" 
+              <OptimizedImage 
+                src={sectionsData[7].imageUrl}
+                alt={sectionsData[7].title} 
                 className="section-image section7-image"
                 onClick={() => openModal(7)}
               />
@@ -119,9 +107,9 @@ export default function Home() {
 
             {/* 섹션 8: 함께한 사람들 */}
             <div>
-              <AnimatedImage 
-                src="/images/section8.jpg" 
-                alt="함께한 사람들" 
+              <OptimizedImage 
+                src={sectionsData[8].imageUrl}
+                alt={sectionsData[8].title} 
                 className="section-image section8-image"
               />
             </div>
