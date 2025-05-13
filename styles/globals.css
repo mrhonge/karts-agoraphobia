@@ -155,10 +155,19 @@ a {
   
   .section1-image {
     margin-left: auto;
-    margin-right: 0;
-    padding-right: 0;
+    margin-right: -12px; /* 컨테이너의 패딩을 상쇄하여 뷰포트 우측 가장자리에 붙도록 함 */
     width: 80%; /* 원하는 너비로 조정 */
     max-width: 280px;
+    box-sizing: content-box; /* 패딩을 너비에 포함하지 않도록 설정 */
+  }
+  
+  /* 모바일에서 section1-image를 포함하는 div에 오버플로우 숨김 속성 추가 */
+  .modal-section > div:nth-child(1) {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
   }
   
   .section2-image {
