@@ -55,11 +55,11 @@ a {
 }
 
 .landing-page {
-  width: 85%;
+  width: 100%;
   height: auto;
   padding-top: 30px;
-  display: flex;          /* 추가 */
-  justify-content: center; /* 추가 */
+  display: flex;          
+  justify-content: center; 
   align-items: center; 
   overflow: hidden;
 }
@@ -110,6 +110,9 @@ a {
 /* 각 섹션 이미지에 대한 개별 스타일 */
 .landing-image {
   /* 랜딩 이미지 스타일 */
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
 }
 
 .section1-image {
