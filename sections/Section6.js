@@ -1,200 +1,21 @@
 import sectionsData from '../data/sections';
-import { useState, useEffect, useId } from 'react';
-import ExpandableText from '../components/ExpandableText';
 import React from 'react';
+import AuthorSection from '../components/AuthorSection';
 
 export default function Section6() {
   const section = sectionsData[6];
   
-  const AuthorSection = ({ authorInfo, children, isLast, sectionIndex }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const uniqueId = useId(); // 각 섹션에 고유 ID 부여
-    
-    // 이미지 갤러리 데이터
-    const images = [
-      '/practice-image/image1.jpg',
-      '/practice-image/image2.jpg',
-      '/practice-image/image3.jpg',
-      '/practice-image/image4.jpg',
-      '/practice-image/image5.jpg',
-      '/practice-image/image6.jpg',
-      '/practice-image/image7.jpg',
-      '/practice-image/image8.jpg',
-    ];
-    
-    // 다음 슬라이드로 이동
-    const nextSlide = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    };
-    
-    // 이전 슬라이드로 이동
-    const prevSlide = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-    };
-    
-    // 자동 슬라이드 기능
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-      }, 5000);
-      
-      return () => clearInterval(interval);
-    }, [images.length]);
-    
-    const authorSectionStyle = {
-      marginBottom: '30px',
-      paddingBottom: '30px',
-      borderBottom: isLast ? 'none' : '1px solid #755E54'
-    };
-    
-    const authorInfoStyle = {
-      fontSize: '0.9rem',
-      color: '#666',
-      marginBottom: '20px',
-      fontStyle: 'italic',
-      textAlign: 'right',
-      paddingBottom: '5px'
-    };
-    
-    const contentBodyStyle = {
-      lineHeight: '1.7',
-      fontSize: '1rem'
-    };
-    
-    const sliderContainer = {
-      marginTop: '50px',
-      position: 'relative',
-      overflow: 'hidden',
-      borderRadius: '8px',
-      height: '400px',
-      display: !isLast ? 'none' : 'block'
-    };
-    
-    const sliderTitle = {
-      textAlign: 'center',
-      fontSize: '1.2rem',
-      fontWeight: 'bold',
-      color: '#755E54',
-      marginBottom: '20px'
-    };
-    
-    const slideStyle = {
-      width: '100%',
-      height: '100%',
-      position: 'relative'
-    };
-    
-    const imageStyle = {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      display: 'block'
-    };
-    
-    const arrowStyle = {
-      position: 'absolute',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      zIndex: 10,
-      cursor: 'pointer',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      color: '#333',
-      border: 'none',
-      borderRadius: '50%',
-      width: '40px',
-      height: '40px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '20px'
-    };
-    
-    const indicatorsContainer = {
-      position: 'absolute',
-      bottom: '20px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      display: 'flex',
-      justifyContent: 'center',
-      zIndex: 10
-    };
-    
-    const indicatorStyle = (index) => ({
-      width: '10px',
-      height: '10px',
-      borderRadius: '50%',
-      backgroundColor: currentIndex === index ? '#755E54' : 'rgba(255, 255, 255, 0.6)',
-      margin: '0 5px',
-      cursor: 'pointer',
-      transition: 'background-color 0.3s ease'
-    });
-    
-    const leftArrow = {
-      ...arrowStyle,
-      left: '15px'
-    };
-    
-    const rightArrow = {
-      ...arrowStyle,
-      right: '15px'
-    };
-    
-    const imageCounter = {
-      position: 'absolute',
-      top: '15px',
-      right: '15px',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-      color: 'white',
-      padding: '5px 10px',
-      borderRadius: '15px',
-      fontSize: '12px',
-      zIndex: 10
-    };
-    
-    return (
-      <div style={authorSectionStyle} id={`author-section-${sectionIndex}`}>
-        <div style={authorInfoStyle}>{authorInfo}</div>
-        <div style={contentBodyStyle} className="content-body">
-          <ExpandableText 
-            text={children}
-            maxHeight={150}
-            showMoreText="더 보기"
-          />
-        </div>
-        
-        {isLast && (
-          <div style={sliderContainer}>
-            <div style={sliderTitle}>작품 제작 과정</div>
-            <div style={slideStyle}>
-              <img
-                src={images[currentIndex]}
-                alt={`제작 과정 이미지 ${currentIndex + 1}`}
-                style={imageStyle}
-              />
-              <div style={imageCounter}>
-                {currentIndex + 1} / {images.length}
-              </div>
-              <button style={leftArrow} onClick={prevSlide}>
-                &#10094;
-              </button>
-              <button style={rightArrow} onClick={nextSlide}>
-                &#10095;
-              </button>
-              <div style={indicatorsContainer}>
-                {images.map((_, index) => (
-                  <span
-                    key={index}
-                    style={indicatorStyle(index)}
-                    onClick={() => setCurrentIndex(index)}
-                  ></span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
+  // 이미지 갤러리 데이터
+  const practiceImages = [
+    '/practice-image/image1.jpg',
+    '/practice-image/image2.jpg',
+    '/practice-image/image3.jpg',
+    '/practice-image/image4.jpg',
+    '/practice-image/image5.jpg',
+    '/practice-image/image6.jpg',
+    '/practice-image/image7.jpg',
+    '/practice-image/image8.jpg',
+  ];
   
   const globalStyles = `
     .content-body p {
@@ -263,6 +84,9 @@ export default function Section6() {
           authorInfo="조연출 한이령 (연극원 연출과 예술사 24)" 
           isLast={true}
           sectionIndex={2}
+          showSlider={true}
+          sliderImages={practiceImages}
+          sliderTitle="작품 제작 과정"
         >
           {haniryeongContent}
         </AuthorSection>

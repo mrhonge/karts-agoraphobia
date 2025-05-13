@@ -1,198 +1,19 @@
 import sectionsData from '../data/sections';
-import { useState, useEffect, useId } from 'react';
-import ExpandableText from '../components/ExpandableText';
 import React from 'react';
+import AuthorSection from '../components/AuthorSection';
 
 export default function Section7() {
   const section = sectionsData[7];
   
-  const AuthorSection = ({ authorInfo, children, isLast, sectionIndex }) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const uniqueId = useId(); // 각 섹션에 고유 ID 부여
-    
-    // 이미지 갤러리 데이터
-    const images = [
-      '/design/design-image1.jpg',
-      '/design/design-image2.jpg',
-      '/design/design-image3.jpg',
-      '/design/design-image4.jpg',
-      '/design/design-image5.jpg',
-      '/design/design-image6.jpg',
-    ];
-    
-    // 다음 슬라이드로 이동
-    const nextSlide = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-    };
-    
-    // 이전 슬라이드로 이동
-    const prevSlide = () => {
-      setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
-    };
-    
-    // 자동 슬라이드 기능
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
-      }, 5000);
-      
-      return () => clearInterval(interval);
-    }, [images.length]);
-    
-    const authorSectionStyle = {
-      marginBottom: '30px',
-      paddingBottom: '30px',
-      borderBottom: isLast ? 'none' : '1px solid #755E54'
-    };
-    
-    const authorInfoStyle = {
-      fontSize: '0.9rem',
-      color: '#666',
-      marginBottom: '20px',
-      fontStyle: 'italic',
-      textAlign: 'right',
-      paddingBottom: '5px'
-    };
-    
-    const contentBodyStyle = {
-      lineHeight: '1.7',
-      fontSize: '1rem'
-    };
-    
-    const sliderContainer = {
-      marginTop: '50px',
-      position: 'relative',
-      overflow: 'hidden',
-      borderRadius: '8px',
-      height: '400px',
-      display: !isLast ? 'none' : 'block'
-    };
-    
-    const sliderTitle = {
-      textAlign: 'center',
-      fontSize: '1.2rem',
-      fontWeight: 'bold',
-      color: '#755E54',
-      marginBottom: '20px'
-    };
-    
-    const slideStyle = {
-      width: '100%',
-      height: '100%',
-      position: 'relative'
-    };
-    
-    const imageStyle = {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      display: 'block'
-    };
-    
-    const arrowStyle = {
-      position: 'absolute',
-      top: '50%',
-      transform: 'translateY(-50%)',
-      zIndex: 10,
-      cursor: 'pointer',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
-      color: '#333',
-      border: 'none',
-      borderRadius: '50%',
-      width: '40px',
-      height: '40px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '20px'
-    };
-    
-    const indicatorsContainer = {
-      position: 'absolute',
-      bottom: '20px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      display: 'flex',
-      justifyContent: 'center',
-      zIndex: 10
-    };
-    
-    const indicatorStyle = (index) => ({
-      width: '10px',
-      height: '10px',
-      borderRadius: '50%',
-      backgroundColor: currentIndex === index ? '#755E54' : 'rgba(255, 255, 255, 0.6)',
-      margin: '0 5px',
-      cursor: 'pointer',
-      transition: 'background-color 0.3s ease'
-    });
-    
-    const leftArrow = {
-      ...arrowStyle,
-      left: '15px'
-    };
-    
-    const rightArrow = {
-      ...arrowStyle,
-      right: '15px'
-    };
-    
-    const imageCounter = {
-      position: 'absolute',
-      top: '15px',
-      right: '15px',
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-      color: 'white',
-      padding: '5px 10px',
-      borderRadius: '15px',
-      fontSize: '12px',
-      zIndex: 10
-    };
-    
-    return (
-      <div style={authorSectionStyle} id={`author-section-${sectionIndex}`}>
-        <div style={authorInfoStyle}>{authorInfo}</div>
-        <div style={contentBodyStyle} className="content-body">
-          <ExpandableText 
-            text={children}
-            maxHeight={150}
-            showMoreText="더 보기"
-          />
-        </div>
-        
-        {isLast && (
-          <div style={sliderContainer}>
-            <div style={sliderTitle}>디자인 과정 갤러리</div>
-            <div style={slideStyle}>
-              <img
-                src={images[currentIndex]}
-                alt={`디자인 과정 이미지 ${currentIndex + 1}`}
-                style={imageStyle}
-              />
-              <div style={imageCounter}>
-                {currentIndex + 1} / {images.length}
-              </div>
-              <button style={leftArrow} onClick={prevSlide}>
-                &#10094;
-              </button>
-              <button style={rightArrow} onClick={nextSlide}>
-                &#10095;
-              </button>
-              <div style={indicatorsContainer}>
-                {images.map((_, index) => (
-                  <span
-                    key={index}
-                    style={indicatorStyle(index)}
-                    onClick={() => setCurrentIndex(index)}
-                  ></span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
+  // 이미지 갤러리 데이터
+  const designImages = [
+    '/design/design-image1.jpg',
+    '/design/design-image2.jpg',
+    '/design/design-image3.jpg',
+    '/design/design-image4.jpg',
+    '/design/design-image5.jpg',
+    '/design/design-image6.jpg',
+  ];
   
   const globalStyles = `
     .content-body p {
@@ -234,19 +55,33 @@ export default function Section7() {
     </>
   );
   
-  // 조명/음향 디자이너의 콘텐츠
-  const lightSoundDesignerContent = (
+  // 조명 디자이너의 콘텐츠
+  const lightingDesignerContent = (
     <>
-      <p><strong>"보이지 않는 감정을 빛과 소리로"</strong></p>
+      <p><strong>"보이지 않는 감정을 빛으로"</strong></p>
       <p>조명은 공간의 분위기와 감정 상태를 표현하는 중요한 역할을 합니다. 불안한 장면에서는 짧은 깜빡임과 
          불규칙한 패턴의 조명을 사용하고, 해방감을 느끼는 장면에서는 따뜻하고 밝은 조명을 활용했습니다.</p>
       <p>특히 주인공의 공황 발작 장면에서는 조명의 색상과 강도를 통해 심리적 압박감을 표현했습니다. 
          이는 관객들이 주인공의 내면 상태를 시각적으로 경험할 수 있도록 하기 위함입니다.</p>
-      <p>음향은 관객이 주인공의 내면을 체험할 수 있도록 설계했습니다. 공황 발작 순간의 심장 소리, 
-         숨소리, 주변 소음의 증폭을 통해 불안 장애를 겪는 사람의 감각적 경험을 전달하고자 했습니다.</p>
-      <p>음악은 주로 현대적 클래식과 전자음악을 결합하여 현대인의 고립과 불안을 표현했습니다. 
-         특히 광장 장면과 내면 장면의 대비를 통해 개인과 집단, 자아와 타자의 관계를 
-         청각적으로 경험할 수 있도록 구성했습니다.</p>
+      <p>공간과 인물을 비추는 빛의 각도와 강도는 장면의 감정적 무게감을 결정합니다. 
+         우리는 빛을 통해 관객들이 극의 감정선을 더 생생하게 느낄 수 있도록 섬세하게 설계했습니다.</p>
+      <p>조명을 통해 무대 위 현실과 상상의 경계를 시각적으로 구분하고, 
+         캐릭터의 내면 여정이 관객들에게 직관적으로 전달되기를 바랍니다.</p>
+    </>
+  );
+
+  // 소품 디자이너의 콘텐츠
+  const propsDesignerContent = (
+    <>
+      <p><strong>"물건에 담긴 이야기"</strong></p>
+      <p>소품은 단순한 물건이 아닌, 캐릭터의 삶과 이야기를 담고 있는 매개체입니다. 
+         특히 이번 작품에서는 광장이라는 개념을 표현하기 위한 상징적인 오브제들이 중요했습니다.</p>
+      <p>관객들에게 익숙한 일상적 물건들이 무대 위에서 새로운 맥락을 갖게 될 때, 
+         그것은 친숙함과 낯섦 사이의 감정을 불러일으키며 관객들의 공감을 이끌어냅니다.</p>
+      <p>소품 하나하나의 색상, 질감, 크기를 통해 광장 안에서 개인의 존재감과 
+         집단 속 정체성의 문제를 시각적으로 표현하고자 했습니다.</p>
+      <p>이 작품의 소품들이 관객들에게 단순한 물건 이상의 의미로 다가가,
+         우리가 전하고자 하는 이야기의 깊이를 더해주길 바랍니다.</p>
     </>
   );
   
@@ -257,25 +92,35 @@ export default function Section7() {
         <style jsx global>{globalStyles}</style>
         
         <AuthorSection 
-          authorInfo="무대 디자이너 김재원"
+          authorInfo="무대 디자이너 이동현 (연극원 무대미술과 예술사 22)"
           sectionIndex={1}
         >
           {stageDesignerContent}
         </AuthorSection>
 
         <AuthorSection 
-          authorInfo="의상 디자이너 박수지"
+          authorInfo="조명 디자이너 박나경 (연극원 무대미술과 전문사 21)"
           sectionIndex={2}
         >
-          {costumeDesignerContent}
+          {lightingDesignerContent}
         </AuthorSection>
         
         <AuthorSection 
-          authorInfo="조명/음향 디자이너 이태현"
-          isLast={true}
+          authorInfo="의상 디자이너 신슬기 (연극원 무대미술과 예술사 22)"
           sectionIndex={3}
         >
-          {lightSoundDesignerContent}
+          {costumeDesignerContent}
+        </AuthorSection>
+
+        <AuthorSection 
+          authorInfo="소품 디자이너 이지현 (연극원 무대미술과 예술사 22)"
+          isLast={true}
+          sectionIndex={4}
+          showSlider={true}
+          sliderImages={designImages}
+          sliderTitle="디자인 과정 갤러리"
+        >
+          {propsDesignerContent}
         </AuthorSection>
       </div>
     )
