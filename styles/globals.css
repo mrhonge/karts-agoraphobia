@@ -62,6 +62,8 @@ a {
   justify-content: center; 
   align-items: center; 
   overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .modal-section {
@@ -91,6 +93,7 @@ a {
   align-items: center;
   color: var(--footer-text);
   margin-left: -12px;
+  margin-right: -12px;
   box-sizing: border-box;
 }
 
@@ -550,5 +553,12 @@ a {
   .footer {
     margin-left: -12px;
     width: 100vw;
+  }
+}
+
+/* 큰 화면에서의 스타일 */
+@media (min-width: 1200px) {
+  .landing-page {
+    max-width: 1000px;
   }
 }
