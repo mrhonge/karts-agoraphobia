@@ -3,8 +3,8 @@ import { useState, useEffect, useId } from 'react';
 import ExpandableText from '../components/ExpandableText';
 import React from 'react';
 
-export default function Section6() {
-  const section = sectionsData[6];
+export default function OldSection5() {
+  const section = sectionsData[5];
   
   const AuthorSection = ({ authorInfo, children, isLast, sectionIndex }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
