@@ -1,6 +1,9 @@
 import sectionsData from '../data/sections';
 import React from 'react';
 import AuthorSection from '../components/AuthorSection';
+import HorizontalImagePair from '../components/HorizontalImagePair';
+import ImageSlider from '../components/ImageSlider';
+
 
 export default function Section7() {
   const section = sectionsData[7];
@@ -15,6 +18,17 @@ export default function Section7() {
     '/design/design-image6.jpg',
   ];
   
+  // 의상 디자인 이미지 데이터
+  const costumeImages = [
+    '/design/costume/costume1.jpg',
+    '/design/costume/costume2.jpg',
+    '/design/costume/costume3.jpg',
+    '/design/costume/costume4.jpg',
+    '/design/costume/costume5.jpg',
+    '/design/costume/costume6.jpg',
+    '/design/costume/costume7.jpg',
+  ];
+  
   const globalStyles = `
     .content-body p {
       margin-bottom: 20px;
@@ -27,46 +41,62 @@ export default function Section7() {
   // 무대 디자이너의 콘텐츠
   const stageDesignerContent = (
     <>
-      <p><strong>"공간을 통해 광장을 표현하다"</strong></p>
-      <p>물리적으로는 가까워지지만 우리들의 광장이 점점 더 멀어지는 이유는 무엇일까요?</p>
-      <p>이번 작업에서 가장 중요하게 생각한 것은 '광장'이라는 개념을 어떻게 시각적으로 표현할 것인가였습니다. 
-         민주주의 여신상, 수많은 광장의 잔해, 그리고 이 시대 우리가 살고 있는 도시까지 다루고 있는 이 공간을 통해 
-         극에서 풀어내고자 하는 광장의 정서적, 개념적 메시지가 관객들에게 보다 가깝게 다가가길 바랍니다.</p>
-      <p>무대 중앙의 반투명한 벽체는 내부와 외부의 경계, 현실과 상상의 경계를 의미합니다. 
-         이는 가깝지만 멀게 느껴지는 현대인의 관계성을 상징적으로 보여주는 장치이기도 합니다.</p>
-      <p>좁고 제한된 공간에서 넓은 공간으로 확장되는 구조를 통해 주인공의 내면 변화를 표현했으며, 
-         이는 관객들이 함께 감정적 여정을 경험할 수 있도록 설계되었습니다.</p>
+      <p><strong>물리적으로는 가까워지지만 우리들의 광장이 점점 더 멀어지는 이유는 무엇일까요?</strong></p>
+      <p>민주주의 여신상, 수많은 광장의 잔해, 그리고 이 시대 우리가 살고 있는 도시 까지 다루고 있는 이 공간을 통해 
+        극에서 풀어내고자 하는 광장의 정서적, 개념적 메세지가 보관객들에게 보다 가깝게 다가가길 바랍니다.</p>
     </>
   );
   
   // 의상 디자이너의 콘텐츠
   const costumeDesignerContent = (
     <>
-      <p><strong>"옷을 통해 보여주는 내면의 여정"</strong></p>
-      <p>의상 디자인은 등장인물의 심리 상태와 사회적 위치를 반영합니다. 
-         특히 주인공은 무채색 계열의 옷에서 점차 색이 들어가는 의상으로 변화하며 내면의 성장을 표현합니다.</p>
-      <p>이번 작품에서 의상은 단순한 옷이 아닌, 캐릭터의 정체성과 변화를 보여주는 시각적 언어입니다. 
-         현대 사회에서 우리가 입는 옷은 우리의 정체성을 표현하는 동시에 때로는 진짜 자아를 감추는 역할도 합니다.</p>
-      <p>관객들이 의상의 변화를 통해 캐릭터의 내면 변화를 더 깊이 이해하고, 
-         광장 안에서 자신의 목소리를 찾아가는 여정을 함께 느낄 수 있길 바랍니다.</p>
-      <p>각 등장인물의 의상 색상과 스타일은 그들이 광장에서 어떤 위치를 차지하는지, 
-         어떤 역할을 하는지를 상징적으로 보여줍니다. 이는 말로 표현되지 않는 
-         캐릭터 간의 관계성과 극의 주제를 더욱 풍부하게 전달하는 요소가 되길 바랍니다.</p>
+      <p>다양한 시대를 거쳐 펼쳐지는 이야기에서 인물 한 명마다 가지고 있는 캐릭터성에 집중하기보단 
+        결국 끝에 전하고자 하는 결말을 이끌게 하는 오브제의 형태로 바라보고 디자인이 시작되었다.</p>
+      <p>또한 복식과 복장의 개념적 차이를 두고 복식에 가까운 디자인 즉 옷의 꾸밈새로 가져가 각 인물을 
+        오브제로 두고 옷과 장신구 형식으로 제작했다.</p>
+      
+      <ImageSlider 
+        images={costumeImages} 
+        title="의상 디자인 및 제작 과정" 
+        autoSlideInterval={4000} 
+      />
     </>
   );
   
   // 조명 디자이너의 콘텐츠
   const lightingDesignerContent = (
     <>
-      <p><strong>"보이지 않는 감정을 빛으로"</strong></p>
-      <p>조명은 공간의 분위기와 감정 상태를 표현하는 중요한 역할을 합니다. 불안한 장면에서는 짧은 깜빡임과 
-         불규칙한 패턴의 조명을 사용하고, 해방감을 느끼는 장면에서는 따뜻하고 밝은 조명을 활용했습니다.</p>
-      <p>특히 주인공의 공황 발작 장면에서는 조명의 색상과 강도를 통해 심리적 압박감을 표현했습니다. 
-         이는 관객들이 주인공의 내면 상태를 시각적으로 경험할 수 있도록 하기 위함입니다.</p>
-      <p>공간과 인물을 비추는 빛의 각도와 강도는 장면의 감정적 무게감을 결정합니다. 
-         우리는 빛을 통해 관객들이 극의 감정선을 더 생생하게 느낄 수 있도록 섬세하게 설계했습니다.</p>
-      <p>조명을 통해 무대 위 현실과 상상의 경계를 시각적으로 구분하고, 
-         캐릭터의 내면 여정이 관객들에게 직관적으로 전달되기를 바랍니다.</p>
+      <p>다양한 공간과 시간이 존재하는 극 속에서 조명이 어디까지 표현해야할지에 대한 기준을 잡는 게 가장 큰 고민이였다. 
+        극이 완성되어갈수록 명확해지는 시대의 흐름을 조명이 자연스럽게 따라가며 변화하는 것을 가장 중점적 컨셉으로 잡았다.</p>
+      <p><strong>1. 톤의 변주에 따른 시간의 층위</strong></p>
+      <p>자연의 빛이 주를 이루던 고대는 웜톤으로,인공의 빛이 혼재된 미래는 쿨톤으로 표현하였다. 
+        서로 다른 두 빛이 섞이는 과정을 통해, 변화하는 시간의 결을 담아내고자 했다.
+      </p>
+      <div className="reference-image-container">
+          <img 
+            src="/design/lighting/lighting-image1.png" 
+            alt="고대부터 현대까지의 조명 변화" 
+            className="reference-image"
+            style={{ 
+              width: '100%', 
+              maxWidth: '500px', 
+              margin: '15px auto', 
+              display: 'block',
+              borderRadius: '6px',
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' 
+            }} 
+          />
+      </div>
+      <p><strong>2. 광장의 조각들</strong></p>
+      <p>'하나의 광장'이라는 이미지로 무대를 덮는 전체 조명과 흩어진 빛과 그림자들 
+        역시 하나의 방향으로 모인다. 분산된 요소들을 하나의 장면으로 만들어내려 했다.</p>
+      <HorizontalImagePair 
+        leftImage="/design/lighting/lighting-image2.png" 
+        rightImage="/design/lighting/lighting-image3.png"
+        leftAlt="어두운 광장의 이미지" 
+        rightAlt="밝은 광장의 이미지"
+        height="250px"
+      />
     </>
   );
 
@@ -94,6 +124,7 @@ export default function Section7() {
         <AuthorSection 
           authorInfo="무대 디자이너 이동현 (연극원 무대미술과 예술사 22)"
           sectionIndex={1}
+          title="무대디자인 노트"
         >
           {stageDesignerContent}
         </AuthorSection>
@@ -101,6 +132,7 @@ export default function Section7() {
         <AuthorSection 
           authorInfo="조명 디자이너 박나경 (연극원 무대미술과 전문사 21)"
           sectionIndex={2}
+          title="조명디자인 노트"
         >
           {lightingDesignerContent}
         </AuthorSection>
@@ -108,6 +140,7 @@ export default function Section7() {
         <AuthorSection 
           authorInfo="의상 디자이너 신슬기 (연극원 무대미술과 예술사 22)"
           sectionIndex={3}
+          title="의상디자인 노트"
         >
           {costumeDesignerContent}
         </AuthorSection>
@@ -116,9 +149,7 @@ export default function Section7() {
           authorInfo="소품 디자이너 이지현 (연극원 무대미술과 예술사 22)"
           isLast={true}
           sectionIndex={4}
-          showSlider={true}
-          sliderImages={designImages}
-          sliderTitle="디자인 과정 갤러리"
+          title="소품디자인 노트"
         >
           {propsDesignerContent}
         </AuthorSection>

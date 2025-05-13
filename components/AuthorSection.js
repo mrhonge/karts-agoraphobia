@@ -9,7 +9,8 @@ const AuthorSection = ({
   sectionIndex,
   showSlider = false,
   sliderImages = [],
-  sliderTitle = "이미지 갤러리"
+  sliderTitle = "이미지 갤러리",
+  title = ""
 }) => {
   const authorSectionStyle = {
     marginBottom: '30px',
@@ -31,9 +32,19 @@ const AuthorSection = ({
     fontSize: '1rem'
   };
   
+  const sectionTitleStyle = {
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+    color: '#755E54',
+    borderLeft: '4px solid #755E54',
+    paddingLeft: '12px'
+  };
+  
   return (
     <div style={authorSectionStyle} id={`author-section-${sectionIndex}`}>
       <div style={authorInfoStyle}>{authorInfo}</div>
+      {title && <div style={sectionTitleStyle}>{title}</div>}
       <div style={contentBodyStyle} className="content-body">
         <ExpandableText 
           text={children}
