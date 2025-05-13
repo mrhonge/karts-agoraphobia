@@ -31,13 +31,13 @@ export function OptimizedImage({
   return (
     <div 
       ref={ref} 
-      className={`optimized-image-wrapper ${inView ? 'visible' : ''} ${isLoaded ? 'loaded' : 'loading'}`}
+      className={`animated-image-wrapper ${inView ? 'visible' : ''} ${isLoaded ? 'loaded' : 'loading'}`}
     >
       {inView && (
         <img 
           src={imgSrc}
           alt={alt}
-          className={`optimized-image ${className || ''}`}
+          className={`animated-image ${className || ''}`}
           onClick={onClick}
           onError={handleError}
           onLoad={handleLoad}

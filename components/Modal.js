@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import styles from './Modal.module.css';
 
 export default function Modal({ isOpen, onClose, children, title }) {
   const modalRef = useRef(null);
@@ -39,28 +38,28 @@ export default function Modal({ isOpen, onClose, children, title }) {
 
   return (
     <div 
-      className={styles.modalOverlay} 
+      className="modal-overlay" 
       onClick={handleModalClick}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div 
-        className={styles.modalContent}
+        className="modal-content"
         ref={modalRef}
         tabIndex="-1"
       >
-        <div className={styles.modalHeader}>
-          <h2 id="modal-title" className={styles.modalTitle}>{title}</h2>
+        <div className="modal-header">
+          <h2 id="modal-title" className="modal-title">{title}</h2>
           <button 
-            className={styles.closeButton} 
+            className="close-button" 
             onClick={onClose}
             aria-label="모달 닫기"
           >
             &times;
           </button>
         </div>
-        <div className={styles.modalBody}>
+        <div className="modal-body">
           {children}
         </div>
       </div>
