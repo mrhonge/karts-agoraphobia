@@ -1,7 +1,8 @@
 .expandableTextContainer {
   position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  margin-bottom: 20px;
 }
 
 .textContent {
@@ -56,29 +57,6 @@
 .expandButton.expanded:after {
   transform: rotate(-135deg);
   top: 1px;
-}
-
-/* 고정 위치 버튼 스타일 */
-.expandButton.fixed {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  background-color: #F6EFE9;
-  border: 1px solid #755E54;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
 }
 
 .textContent:not(.expanded)::after {

@@ -1,13 +1,14 @@
 import sectionsData from '../data/sections';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 import ExpandableText from '../components/ExpandableText';
 import React from 'react';
 
 export default function Section5() {
   const section = sectionsData[5];
   
-  const AuthorSection = ({ authorInfo, children, isLast }) => {
+  const AuthorSection = ({ authorInfo, children, isLast, sectionIndex }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const uniqueId = useId(); // 각 섹션에 고유 ID 부여
     
     // 이미지 갤러리 데이터
     const images = [
@@ -151,7 +152,7 @@ export default function Section5() {
     };
     
     return (
-      <div style={authorSectionStyle}>
+      <div style={authorSectionStyle} id={`author-section-${sectionIndex}`}>
         <div style={authorInfoStyle}>{authorInfo}</div>
         <div style={contentBodyStyle} className="content-body">
           <ExpandableText 
@@ -251,11 +252,18 @@ export default function Section5() {
       <div className="modal-content-wrapper">
         <style jsx global>{globalStyles}</style>
         
-        <AuthorSection authorInfo="조연출 이정아 (연극원 연출과 예술사 21)">
+        <AuthorSection 
+          authorInfo="조연출 이정아 (연극원 연출과 예술사 21)"
+          sectionIndex={1}
+        >
           {jeongaContent}
         </AuthorSection>
 
-        <AuthorSection authorInfo="조연출 한이령 (연극원 연출과 예술사 24)" isLast={true}>
+        <AuthorSection 
+          authorInfo="조연출 한이령 (연극원 연출과 예술사 24)" 
+          isLast={true}
+          sectionIndex={2}
+        >
           {haniryeongContent}
         </AuthorSection>
       </div>
