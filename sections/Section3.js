@@ -76,6 +76,14 @@ export default function Section3() {
       <p>사실 이 모든 건 제 바람이고, 어떻게 받아들이거나 잊으셔도 좋습니다.</p>
     </>
   );
+
+  // 이진의 글 콘텐츠
+  const leeJinContent = (
+    <>
+      <p>이진의 글</p>
+      <p>여기에 남겨 주세요.</p>
+    </>
+  );
   
   // 임현서의 글 콘텐츠
   const limHyunseoContent = (
@@ -92,14 +100,22 @@ export default function Section3() {
       </p>
     </>
   );
-  
+
+  // 홍경민의 글 콘텐츠
+  const HongKyeongminContent = (
+    <>
+      <p>홍경민의 글</p>
+      <p>여기에 남겨 주세요.</p>
+    </>
+  );
+
   return {
     title: section.title,
     content: (
       <div className="modal-content-wrapper">
         <style jsx global>{globalStyles}</style>
         <div style={authorSectionStyle}>
-          <div style={authorInfoStyle}>김한인 (연극원 극작과 예술사 21)</div>
+          <div style={authorInfoStyle}>작가 김한인 (연극원 극작과 예술사 21)</div>
           <div style={contentBodyStyle} className="content-body">
             <ExpandableText 
               text={kimHaninContent}
@@ -110,7 +126,7 @@ export default function Section3() {
         </div>
 
         <div style={authorSectionStyle}>
-          <div style={authorInfoStyle}>오성경 (외부)</div>
+          <div style={authorInfoStyle}>작가 오성경 (외부)</div>
           <div style={contentBodyStyle} className="content-body">
             <ExpandableText 
               text={ohSungkyungContent}
@@ -120,11 +136,33 @@ export default function Section3() {
           </div>
         </div>
 
-        <div style={{...authorSectionStyle, ...lastAuthorSectionStyle}}>
-          <div style={authorInfoStyle}>임현서 (연극원 예술사 극작과 21)</div>
+        <div style={authorSectionStyle}>
+          <div style={authorInfoStyle}>작가 이진 (연극원 예술사 극작과 21)</div>
+          <div style={contentBodyStyle} className="content-body">
+            <ExpandableText 
+              text={leeJinContent}
+              maxHeight={150}
+              showMoreText="더 보기"
+            />
+          </div>
+        </div>
+
+        <div style={authorSectionStyle}>
+          <div style={authorInfoStyle}>작가 임현서 (연극원 예술사 극작과 21)</div>
           <div style={contentBodyStyle} className="content-body">
             <ExpandableText 
               text={limHyunseoContent}
+              maxHeight={150}
+              showMoreText="더 보기"
+            />
+          </div>
+        </div>
+
+        <div style={{...authorSectionStyle, ...lastAuthorSectionStyle}}>
+          <div style={authorInfoStyle}>작가 홍경민 (연극원 예술사 극작과 졸업업)</div>
+          <div style={contentBodyStyle} className="content-body">
+            <ExpandableText 
+              text={HongKyeongminContent}
               maxHeight={150}
               showMoreText="더 보기"
             />

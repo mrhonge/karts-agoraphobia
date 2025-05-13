@@ -43,7 +43,7 @@ export default function Section1() {
     title: section.title,
     content: (
       <div className="modal-content-wrapper">
-        <h3 className="content-title">광장의 초입에 서서서</h3>
+        <h3 className="content-title">광장의 초입에 서서</h3>
         <div className="author-info">박지원 (연극원 연출과 예술사 21)</div>
         <div className="content-body">
           <ExpandableText 

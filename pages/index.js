@@ -76,7 +76,7 @@ export default function Home() {
               />
             </div>
 
-            {/* 섹션 5: 창작과정기록 */}
+            {/* 섹션 5: 작품 이해 돕기 */}
             <div>
               <OptimizedImage 
                 src={sectionsData[5].imageUrl}
@@ -86,16 +86,17 @@ export default function Home() {
               />
             </div>
 
-            {/* 섹션 6: 배우프로필 */}
+            {/* 섹션 6: 조연출의 글 */}
             <div>
               <OptimizedImage 
                 src={sectionsData[6].imageUrl}
                 alt={sectionsData[6].title} 
                 className="section-image section6-image"
+                onClick={() => openModal(6)}
               />
             </div>
 
-            {/* 섹션 7: 나가는 글 */}
+            {/* 섹션 7: 디자이너 노트 */}
             <div>
               <OptimizedImage 
                 src={sectionsData[7].imageUrl}
@@ -105,12 +106,33 @@ export default function Home() {
               />
             </div>
 
-            {/* 섹션 8: 함께한 사람들 */}
+            {/* 섹션 8: 출연진 프로필 */}
             <div>
               <OptimizedImage 
                 src={sectionsData[8].imageUrl}
                 alt={sectionsData[8].title} 
                 className="section-image section8-image"
+                onClick={() => openModal(8)}
+              />
+            </div>
+
+            {/* 섹션 9: 기획의 글 */}
+            <div>
+              <OptimizedImage 
+                src={sectionsData[9].imageUrl}
+                alt={sectionsData[9].title} 
+                className="section-image section9-image"
+                onClick={() => openModal(9)}
+              />
+            </div>
+
+            {/* 섹션 10: 함께한 사람들 */}
+            <div>
+              <OptimizedImage 
+                src={sectionsData[10].imageUrl}
+                alt={sectionsData[10].title} 
+                className="section-image section10-image"
+                onClick={() => openModal(10)}
               />
             </div>
           </div>
