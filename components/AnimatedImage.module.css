@@ -21,19 +21,17 @@
   transform: scale(1.02);
 }
 
-/* 페이드 인 효과 */
+/* 추가적인 애니메이션 효과들 */
 .fadeIn {
-  animation: fadeIn 0.8s ease-out;
+  animation: fadeIn 0.6s ease-out;
 }
 
-/* 슬라이드 인 효과 */
 .slideIn {
-  animation: slideIn 0.8s ease-out;
+  animation: slideIn 0.6s ease-out;
 }
 
-/* 줌 인 효과 */
 .zoomIn {
-  animation: zoomIn 0.8s ease-out;
+  animation: zoomIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {

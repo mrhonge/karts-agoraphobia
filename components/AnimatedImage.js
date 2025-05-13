@@ -7,32 +7,17 @@ export function AnimatedImage({ src, alt, className, onClick }) {
     triggerOnce: true, // 한 번만 애니메이션 실행
   });
 
-  const styles = {
-    imageWrapper: {
-      opacity: inView ? 1 : 0,
-      transform: inView ? 'translateY(0)' : 'translateY(30px)',
-      transition: 'all 0.8s ease-out'
-    },
-    image: {
-      width: '100%',
-      height: 'auto',
-      display: 'block',
-      transition: 'transform 0.3s ease',
-      cursor: onClick ? 'pointer' : 'default'
-    }
-  };
-
   return (
     <div 
       ref={ref} 
-      style={styles.imageWrapper}
+      className={`animated-image-wrapper ${inView ? 'visible' : ''}`}
     >
       <img 
         src={src} 
         alt={alt} 
-        style={styles.image}
+        className={`animated-image ${className || ''}`}
         onClick={onClick}
-        className={className || ''}
+        style={{ cursor: onClick ? 'pointer' : 'default' }}
       />
     </div>
   );

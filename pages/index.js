@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Modal from "../components/Modal";
 import { ModalContent } from "../components/ModalContent";
+import { AnimatedImage } from '../components/AnimatedImage';
 
 export default function Home() {
   // 모달 상태 관리
@@ -38,7 +39,7 @@ export default function Home() {
         <main>
           {/* 랜딩 페이지 */}
           <div className="landing-page">
-            <img 
+            <AnimatedImage 
               src="/images/landing.jpg" 
               alt="아고라포비아 랜딩 이미지" 
               className="section-image landing-image"
@@ -49,62 +50,57 @@ export default function Home() {
           <div className="modal-section">
             {/* 섹션 1: 들어가는 글 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section1.png" 
                 alt="들어가는 글" 
                 className="section-image section1-image"
                 onClick={() => openModal(1)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 2: 작품 소개 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section2.jpg" 
                 alt="작품 소개" 
                 className="section-image section2-image"
                 onClick={() => openModal(2)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 3: 작가의 글 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section3.jpg" 
                 alt="작가의 글" 
                 className="section-image section3-image"
                 onClick={() => openModal(3)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 4: 드라마터그의 글 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section4.jpg" 
                 alt="드라마터그의 글" 
                 className="section-image section4-image"
                 onClick={() => openModal(4)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 5: 창작과정기록 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section5.jpg" 
                 alt="창작과정기록" 
                 className="section-image section5-image"
                 onClick={() => openModal(5)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 6: 배우프로필 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section6.jpg" 
                 alt="배우프로필" 
                 className="section-image section6-image"
@@ -113,18 +109,17 @@ export default function Home() {
 
             {/* 섹션 7: 나가는 글 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section7.jpg" 
                 alt="나가는 글" 
                 className="section-image section7-image"
                 onClick={() => openModal(7)}
-                style={{ cursor: 'pointer' }}
               />
             </div>
 
             {/* 섹션 8: 함께한 사람들 */}
             <div>
-              <img 
+              <AnimatedImage 
                 src="/images/section8.jpg" 
                 alt="함께한 사람들" 
                 className="section-image section8-image"
@@ -134,7 +129,7 @@ export default function Home() {
 
           {/* 푸터 */}
           <footer className="footer">
-            <img 
+            <img
               src="/images/karts-logo.jpg" 
               alt="한국예술종합학교 로고" 
               className="logo"
