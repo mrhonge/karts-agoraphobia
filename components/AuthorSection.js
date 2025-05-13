@@ -24,7 +24,8 @@ const AuthorSection = ({
     marginBottom: '20px',
     fontStyle: 'italic',
     textAlign: 'right',
-    paddingBottom: '5px'
+    paddingBottom: '5px',
+    borderBottom: '1px solid #eee'
   };
   
   const contentBodyStyle = {
@@ -35,7 +36,7 @@ const AuthorSection = ({
   const sectionTitleStyle = {
     fontSize: '1.4rem',
     fontWeight: 'bold',
-    marginBottom: '20px',
+    marginBottom: '15px',
     color: '#755E54',
     borderLeft: '4px solid #755E54',
     paddingLeft: '12px'
@@ -43,8 +44,8 @@ const AuthorSection = ({
   
   return (
     <div style={authorSectionStyle} id={`author-section-${sectionIndex}`}>
-      <div style={authorInfoStyle}>{authorInfo}</div>
       {title && <div style={sectionTitleStyle}>{title}</div>}
+      <div style={authorInfoStyle}>{authorInfo}</div>
       <div style={contentBodyStyle} className="content-body">
         <ExpandableText 
           text={children}
