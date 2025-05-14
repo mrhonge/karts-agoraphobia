@@ -1,18 +1,30 @@
 import Head from "next/head";
-import { useEffect } from "react";
-import Modal from "../components/Modal";
-import { ModalContent } from "../components/ModalContent";
+import { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
+import { ModalContent, getModalTitle } from "../components/ModalContent";
 import { OptimizedImage } from '../components/OptimizedImage';
 import sectionsData from '../data/sections';
 import { useModal } from '../contexts/ModalContext';
 
+// 모달 컴포넌트 동적 임포트
+const Modal = dynamic(() => import('../components/Modal'), {
+  ssr: false,
+  loading: () => <div className="loading-spinner">로딩 중...</div>
+});
+
 export default function Home() {
   const { modalOpen, currentSection, openModal, closeModal } = useModal();
+  const [isLoading, setIsLoading] = useState(true);
 
-  // 현재 섹션의 모달 콘텐츠 가져오기
-  const { title, content } = currentSection 
-    ? ModalContent({ sectionId: currentSection })
-    : { title: "", content: null };
+  // 페이지 로딩 완료 시 로딩 상태 해제
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  // 현재 섹션의 제목 가져오기
+  const title = currentSection ? 
+    sectionsData[currentSection]?.title || getModalTitle({ sectionId: currentSection }) : 
+    "";
 
   return (
     <>
@@ -31,6 +43,7 @@ export default function Home() {
               src="/images/landing.png" 
               alt="아고라포비아 랜딩 이미지" 
               className="section-image landing-image"
+              priority
             />
           </div>
 
@@ -43,6 +56,7 @@ export default function Home() {
                 alt={sectionsData[1].title} 
                 className="section-image section1-image"
                 onClick={() => openModal(1)}
+                loading="lazy"
               />
             </div>
 
@@ -53,6 +67,7 @@ export default function Home() {
                 alt={sectionsData[2].title} 
                 className="section-image section2-image"
                 onClick={() => openModal(2)}
+                loading="lazy"
               />
             </div>
 
@@ -63,6 +78,7 @@ export default function Home() {
                 alt={sectionsData[3].title} 
                 className="section-image section3-image"
                 onClick={() => openModal(3)}
+                loading="lazy"
               />
             </div>
 
@@ -73,6 +89,7 @@ export default function Home() {
                 alt={sectionsData[4].title} 
                 className="section-image section4-image"
                 onClick={() => openModal(4)}
+                loading="lazy"
               />
             </div>
 
@@ -83,6 +100,7 @@ export default function Home() {
                 alt={sectionsData[5].title} 
                 className="section-image section5-image"
                 onClick={() => openModal(5)}
+                loading="lazy"
               />
             </div>
 
@@ -93,6 +111,7 @@ export default function Home() {
                 alt={sectionsData[6].title} 
                 className="section-image section6-image"
                 onClick={() => openModal(6)}
+                loading="lazy"
               />
             </div>
 
@@ -103,6 +122,7 @@ export default function Home() {
                 alt={sectionsData[7].title} 
                 className="section-image section7-image"
                 onClick={() => openModal(7)}
+                loading="lazy"
               />
             </div>
 
@@ -113,6 +133,7 @@ export default function Home() {
                 alt={sectionsData[8].title} 
                 className="section-image section8-image"
                 onClick={() => openModal(8)}
+                loading="lazy"
               />
             </div>
 
@@ -123,6 +144,7 @@ export default function Home() {
                 alt={sectionsData[9].title} 
                 className="section-image section9-image"
                 onClick={() => openModal(9)}
+                loading="lazy"
               />
             </div>
 
@@ -133,6 +155,7 @@ export default function Home() {
                 alt={sectionsData[10].title} 
                 className="section-image section10-image"
                 onClick={() => openModal(10)}
+                loading="lazy"
               />
             </div>
           </div>
@@ -154,13 +177,15 @@ export default function Home() {
       </div>
 
       {/* 모달 */}
-      <Modal 
-        isOpen={modalOpen} 
-        onClose={closeModal} 
-        title={title}
-      >
-        {content}
-      </Modal>
+      {!isLoading && (
+        <Modal 
+          isOpen={modalOpen} 
+          onClose={closeModal} 
+          title={title}
+        >
+          {currentSection && <ModalContent sectionId={currentSection} />}
+        </Modal>
+      )}
     </>
   );
 }

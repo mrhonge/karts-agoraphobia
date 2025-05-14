@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import sectionMap from '../sections/sectionMap';
 
 export function ModalContent({ sectionId }) {
-  const [content, setContent] = useState(null);
+  const [contentData, setContentData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   
@@ -12,7 +12,7 @@ export function ModalContent({ sectionId }) {
       sectionMap[sectionId]()
         .then(module => {
           const SectionComponent = module.default;
-          setContent(SectionComponent());
+          setContentData(SectionComponent());
           setLoading(false);
         })
         .catch(err => {
@@ -21,7 +21,7 @@ export function ModalContent({ sectionId }) {
           setLoading(false);
         });
     } else {
-      setContent({
+      setContentData({
         title: "내용 없음",
         content: <p>해당 섹션의 내용이 준비되지 않았습니다.</p>
       });
@@ -29,15 +29,24 @@ export function ModalContent({ sectionId }) {
     }
   }, [sectionId]);
   
-  if (loading) return { 
-    title: "로딩 중...", 
-    content: <div className="loading-spinner">콘텐츠를 불러오는 중입니다...</div> 
-  };
+  if (loading) return (
+    <div className="loading-spinner">콘텐츠를 불러오는 중입니다...</div>
+  );
   
-  if (error) return { 
-    title: "오류 발생", 
-    content: <div className="error-message">콘텐츠를 불러오는 중 오류가 발생했습니다.</div> 
-  };
+  if (error) return (
+    <div className="error-message">콘텐츠를 불러오는 중 오류가 발생했습니다.</div>
+  );
   
-  return content;
+  return contentData?.content || null;
+}
+
+export function getModalTitle({ sectionId }) {
+  // 섹션 ID에 따른 기본 타이틀 반환
+  if (!sectionId) return "";
+  
+  if (sectionMap[sectionId]) {
+    return sectionMap[sectionId].title || "섹션 내용";
+  }
+  
+  return "내용 없음";
 }
