@@ -51,7 +51,6 @@ export default function OldSection5() {
       fontSize: '0.9rem',
       color: '#666',
       marginBottom: '20px',
-      fontStyle: 'italic',
       textAlign: 'right',
       paddingBottom: '5px'
     };
