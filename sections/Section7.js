@@ -100,7 +100,7 @@ export default function Section7() {
     </>
   );
 
-  // 음악감독독의 콘텐츠
+  // 음악감독의 콘텐츠
   const propsDesignerContent = (
     <>
       <p>아고라포비아를 하면서 우리가 일상에서 지나치는 수많은 광장에 대해 다시 감각할 수 있었습니다. 

@@ -1,0 +1,164 @@
+.gridContainer {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.imageCard {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.imageCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.imageWrapper {
+  position: relative;
+  padding-top: 100%; /* 정사각형 비율 */
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; /* 얼굴이 보이게 상단 중앙 정렬 */
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* 팝업 스타일 */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.popupContent {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  color: #000;
+}
+
+.popupImageWrapper {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.popupImageWrapper img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.popupInfo {
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.popupName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.popupRole {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+  
+  .popupContent {
+    padding: 15px;
+  }
+  
+  .popupName {
+    font-size: 1.1rem;
+  }
+  
+  .popupRole {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  
+  .popupContent {
+    padding: 10px;
+  }
+  
+  .popupName {
+    font-size: 1rem;
+  }
+  
+  .popupRole {
+    font-size: 0.85rem;
+  }
+} 
