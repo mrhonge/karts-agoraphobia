@@ -14,11 +14,10 @@ export default function Section10() {
         <hr style={{ 
           margin: '2rem 0',
           border: 'none',
-          borderBottom: '1px solid #eee'
+          borderBottom: '1px solid #8B4513'
         }} />
         
         <div className="staff-photos">
-          <h3 className="staff-photos-title">스태프 사진</h3>
           <StaffImageGrid /> 
         </div>
       </div>
