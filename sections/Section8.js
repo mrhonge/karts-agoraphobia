@@ -216,22 +216,10 @@ export default function Section8() {
       path: '/actors/김예슬.png'
     },
     {
-      name: '이정은',
+      name: '나윤희',
       role: '배우',
       education: '연극원 연기과 예술사 졸업',
-      path: '/actors/이정은.png'
-    },
-    {
-      name: '이승연',
-      role: '배우',
-      education: '연극원 연기과 예술사 22',
-      path: '/actors/이승연.png'
-    },
-    {
-      name: '이산하',
-      role: '배우',
-      education: '연극원 연기과 예술사 졸업',
-      path: '/actors/이산하.png'
+      path: '/actors/나윤희.png'
     },
     {
       name: '예지민',
@@ -240,16 +228,28 @@ export default function Section8() {
       path: '/actors/예지민.png'
     },
     {
+      name: '이산하',
+      role: '배우',
+      education: '연극원 연기과 예술사 졸업',
+      path: '/actors/이산하.png'
+    },
+    {
+      name: '이승연',
+      role: '배우',
+      education: '연극원 연기과 예술사 22',
+      path: '/actors/이승연.png'
+    },
+    {
+      name: '이정은',
+      role: '배우',
+      education: '연극원 연기과 예술사 졸업',
+      path: '/actors/이정은.png'
+    },
+    {
       name: '민동혁',
       role: '배우',
       education: '연극원 연기과 예술사 졸업',
       path: '/actors/민동혁.png'
-    },
-    {
-      name: '나윤희',
-      role: '배우',
-      education: '연극원 연기과 예술사 졸업',
-      path: '/actors/나윤희.png'
     }
   ];
 
