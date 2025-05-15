@@ -63,7 +63,7 @@ export default function Home() {
           <div className="modal-section">
             {/* 섹션 1-3: 우선 로드 */}
             {Object.keys(sectionsData)
-              .filter(key => parseInt(key) <= visibleSections)
+              .filter(key => parseInt(key) <= visibleSections && parseInt(key) !== 9) // 섹션 9 제외
               .map(key => {
                 const section = sectionsData[key];
                 return (
