@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import Modal from '../components/Modal';
+import dynamic from 'next/dynamic';
 import ExpandableText from '../components/ExpandableText';
 import Head from 'next/head';
+
+// 모달 컴포넌트 동적 임포트
+const Modal = dynamic(() => import('../components/Modal'), {
+  ssr: false,
+  loading: () => <div className="loading-spinner">로딩 중...</div>
+});
 
 export default function ExpandableModalExample() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,17 +39,19 @@ export default function ExpandableModalExample() {
         모달 열기
       </button>
       
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={closeModal}
-        title="아고라포비아에 대한 정보"
-      >
-        <ExpandableText 
-          text={longText} 
-          maxHeight={150} 
-          showMoreText="더 보기"
-        />
-      </Modal>
+      {isModalOpen && (
+        <Modal 
+          isOpen={isModalOpen} 
+          onClose={closeModal}
+          title="아고라포비아에 대한 정보"
+        >
+          <ExpandableText 
+            text={longText} 
+            maxHeight={150} 
+            showMoreText="더 보기"
+          />
+        </Modal>
+      )}
     </div>
   );
 } 

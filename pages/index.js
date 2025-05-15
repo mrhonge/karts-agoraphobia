@@ -6,7 +6,7 @@ import { OptimizedImage } from '../components/OptimizedImage';
 import sectionsData from '../data/sections';
 import { useModal } from '../contexts/ModalContext';
 
-// 모달 컴포넌트 동적 임포트
+// 모달 컴포넌트 동적 임포트 - 클라이언트 사이드에서만 로드
 const Modal = dynamic(() => import('../components/Modal'), {
   ssr: false,
   loading: () => <div className="loading-spinner">로딩 중...</div>
@@ -15,10 +15,22 @@ const Modal = dynamic(() => import('../components/Modal'), {
 export default function Home() {
   const { modalOpen, currentSection, openModal, closeModal } = useModal();
   const [isLoading, setIsLoading] = useState(true);
+  const [visibleSections, setVisibleSections] = useState(3); // 처음에 3개 섹션만 표시
 
   // 페이지 로딩 완료 시 로딩 상태 해제
   useEffect(() => {
     setIsLoading(false);
+
+    // 스크롤 이벤트 리스너 추가
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        // 스크롤이 하단 근처에 도달하면 더 많은 섹션 로드
+        setVisibleSections(prev => Math.min(prev + 3, 10));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // 현재 섹션의 제목 가져오기
@@ -43,126 +55,35 @@ export default function Home() {
               src="/images/landing.png" 
               alt="아고라포비아 랜딩 이미지" 
               className="section-image landing-image"
-              priority
+              priority={true}
             />
           </div>
 
           {/* 모달 섹션 */}
           <div className="modal-section">
-            {/* 섹션 1: 들어가는 글 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[1].imageUrl}
-                alt={sectionsData[1].title} 
-                className="section-image section1-image"
-                onClick={() => openModal(1)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 2: 작품 소개 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[2].imageUrl}
-                alt={sectionsData[2].title} 
-                className="section-image section2-image"
-                onClick={() => openModal(2)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 3: 작가의 글 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[3].imageUrl}
-                alt={sectionsData[3].title} 
-                className="section-image section3-image"
-                onClick={() => openModal(3)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 4: 드라마터그의 글 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[4].imageUrl}
-                alt={sectionsData[4].title} 
-                className="section-image section4-image"
-                onClick={() => openModal(4)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 5: 작품 이해 돕기 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[5].imageUrl}
-                alt={sectionsData[5].title} 
-                className="section-image section5-image"
-                onClick={() => openModal(5)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 6: 조연출의 글 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[6].imageUrl}
-                alt={sectionsData[6].title} 
-                className="section-image section6-image"
-                onClick={() => openModal(6)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 7: 디자이너 노트 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[7].imageUrl}
-                alt={sectionsData[7].title} 
-                className="section-image section7-image"
-                onClick={() => openModal(7)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 8: 출연진 프로필 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[8].imageUrl}
-                alt={sectionsData[8].title} 
-                className="section-image section8-image"
-                onClick={() => openModal(8)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 9: 기획의 글 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[9].imageUrl}
-                alt={sectionsData[9].title} 
-                className="section-image section9-image"
-                onClick={() => openModal(9)}
-                loading="lazy"
-              />
-            </div>
-
-            {/* 섹션 10: 함께한 사람들 */}
-            <div>
-              <OptimizedImage 
-                src={sectionsData[10].imageUrl}
-                alt={sectionsData[10].title} 
-                className="section-image section10-image"
-                onClick={() => openModal(10)}
-                loading="lazy"
-              />
-            </div>
+            {/* 섹션 1-3: 우선 로드 */}
+            {Object.keys(sectionsData)
+              .filter(key => parseInt(key) <= visibleSections)
+              .map(key => {
+                const section = sectionsData[key];
+                return (
+                  <div key={section.id}>
+                    <OptimizedImage 
+                      src={section.imageUrl}
+                      alt={section.title} 
+                      className={`section-image section${section.id}-image`}
+                      onClick={() => openModal(section.id)}
+                      priority={section.id <= 2} // 첫 2개 섹션은 우선순위
+                    />
+                  </div>
+                );
+              })
+            }
           </div>
 
           {/* 푸터 */}
           <footer className="footer">
-            <img
+            <OptimizedImage 
               src="/images/karts-logo.jpg" 
               alt="한국예술종합학교 로고" 
               className="logo"

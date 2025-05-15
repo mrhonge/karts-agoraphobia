@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 export function OptimizedImage({ 
   src, 
   alt, 
   className, 
   onClick, 
-  fallbackSrc = '/images/placeholder.jpg'
+  fallbackSrc = '/images/placeholder.jpg',
+  priority = false
 }) {
   const [imgSrc, setImgSrc] = useState(src);
   const [imgError, setImgError] = useState(false);
@@ -34,16 +36,23 @@ export function OptimizedImage({
       className={`animated-image-wrapper ${inView ? 'visible' : ''} ${isLoaded ? 'loaded' : 'loading'}`}
     >
       {inView && (
-        <img 
-          src={imgSrc}
-          alt={alt}
-          className={`animated-image ${className || ''}`}
-          onClick={onClick}
-          onError={handleError}
-          onLoad={handleLoad}
-          style={{ cursor: onClick ? 'pointer' : 'default' }}
-          loading="lazy"
-        />
+        <div style={{ position: 'relative', width: '100%', maxWidth: '500px', margin: '0 auto' }}>
+          <img 
+            src={imgSrc}
+            alt={alt}
+            className={`animated-image ${className || ''}`}
+            onClick={onClick}
+            onError={handleError}
+            onLoad={handleLoad}
+            style={{ 
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              cursor: onClick ? 'pointer' : 'default'
+            }}
+            loading={priority ? 'eager' : 'lazy'}
+          />
+        </div>
       )}
       {(!isLoaded || !inView) && <div className="image-placeholder"></div>}
     </div>

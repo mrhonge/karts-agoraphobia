@@ -1,32 +1,57 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import sectionMap from '../sections/sectionMap';
 
-export function ModalContent({ sectionId }) {
+// 메모이제이션으로 불필요한 렌더링 방지
+export const ModalContent = memo(function ModalContent({ sectionId }) {
   const [contentData, setContentData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   
   useEffect(() => {
-    if (sectionMap[sectionId]) {
-      setLoading(true);
-      sectionMap[sectionId]()
-        .then(module => {
-          const SectionComponent = module.default;
-          setContentData(SectionComponent());
-          setLoading(false);
-        })
-        .catch(err => {
+    let isMounted = true;
+    
+    const loadContent = async () => {
+      if (sectionMap[sectionId]) {
+        try {
+          setLoading(true);
+          // 로딩 상태 표시를 위한 최소 지연
+          const delayPromise = new Promise(resolve => setTimeout(resolve, 100));
+          
+          // 섹션 컴포넌트 로드
+          const modulePromise = sectionMap[sectionId]();
+          
+          // 두 프로미스를 병렬로 실행
+          const [_, module] = await Promise.all([delayPromise, modulePromise]);
+          
+          if (isMounted) {
+            const SectionComponent = module.default;
+            setContentData(SectionComponent());
+            setLoading(false);
+          }
+        } catch (err) {
           console.error("섹션 로딩 실패:", err);
-          setError(true);
+          if (isMounted) {
+            setError(true);
+            setLoading(false);
+          }
+        }
+      } else {
+        if (isMounted) {
+          setContentData({
+            title: "내용 없음",
+            content: <p>해당 섹션의 내용이 준비되지 않았습니다.</p>
+          });
           setLoading(false);
-        });
-    } else {
-      setContentData({
-        title: "내용 없음",
-        content: <p>해당 섹션의 내용이 준비되지 않았습니다.</p>
-      });
-      setLoading(false);
-    }
+        }
+      }
+    };
+    
+    loadContent();
+    
+    // 클린업 함수
+    return () => {
+      isMounted = false;
+    };
   }, [sectionId]);
   
   if (loading) return (
@@ -38,7 +63,7 @@ export function ModalContent({ sectionId }) {
   );
   
   return contentData?.content || null;
-}
+});
 
 export function getModalTitle({ sectionId }) {
   // 섹션 ID에 따른 기본 타이틀 반환
