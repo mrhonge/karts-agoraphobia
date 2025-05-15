@@ -110,6 +110,8 @@ a {
 .logo {
   max-width: 120px;
   height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /* 각 섹션 이미지에 대한 개별 스타일 */
