@@ -187,7 +187,7 @@ export default function Section3() {
         </div>
 
         <div style={{...authorSectionStyle, ...lastAuthorSectionStyle}}>
-          <div style={authorInfoStyle}>작가 홍경민 (연극원 예술사 극작과 졸업)</div>
+          <div style={authorInfoStyle}>작가 홍경민 (연극원 예술사 연출과 졸업)</div>
           <div style={contentBodyStyle} className="content-body">
             <ExpandableText 
               text={HongKyeongminContent}
