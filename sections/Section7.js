@@ -100,8 +100,18 @@ export default function Section7() {
     </>
   );
 
-  // 음악감독의 콘텐츠
+  // 소품디자이너의 콘텐츠
   const propsDesignerContent = (
+    <>
+      <p>광장이라는 공간은 시대와 장소에 따라 끊임없이 형태를 바꿔 왔습니다. 
+        아고라포비아의 소품은 여러 시대속 다양한 인물들의 서사를 잇는 시각적 매개체로서 현실과 허구, 
+        고대와 현대 사이의 감각적 경계를 구성합니다. 작품의 시선이 머무는 지점에 조용히 스며들수 있도록 초점을 맞추었습니다
+      </p>
+    </>
+  );
+
+  // 음악감독의 콘텐츠
+  const musicDesignerContent = (
     <>
       <p>아고라포비아를 하면서 우리가 일상에서 지나치는 수많은 광장에 대해 다시 감각할 수 있었습니다. 
         광장에선 어떤 소리가 나는지, 특히 시간 순서대로 이야기가 흐르는 아고라포비아에서는 과거의 광장과 현재의 광장, 
@@ -135,7 +145,7 @@ export default function Section7() {
         </AuthorSection>
         
         <AuthorSection 
-          title="의상디자인 노트"
+          title="의상 노트"
           authorInfo="의상 디자이너 신슬기 (연극원 무대미술과 예술사 22)"
           sectionIndex={3}
         >
@@ -143,12 +153,20 @@ export default function Section7() {
         </AuthorSection>
 
         <AuthorSection 
-          title="음악 노트"
-          authorInfo="음악감독 홍석영 (외부)"
-          isLast={true}
+          title="소품 노트"
+          authorInfo="소품 디자이너 이지현 (연극원 무대미술과 예술사 22)"
           sectionIndex={4}
         >
           {propsDesignerContent}
+        </AuthorSection>
+
+        <AuthorSection 
+          title="음악 노트"
+          authorInfo="음악감독 홍석영 (외부)"
+          isLast={true}
+          sectionIndex={5}
+        >
+          {musicDesignerContent}
         </AuthorSection>
       </div>
     )
