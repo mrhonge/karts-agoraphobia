@@ -10,7 +10,8 @@ const AuthorSection = ({
   showSlider = false,
   sliderImages = [],
   sliderTitle = "이미지 갤러리",
-  title = ""
+  title = "",
+  expandableDisabled = false
 }) => {
   const authorSectionStyle = {
     marginBottom: '30px',
@@ -47,11 +48,15 @@ const AuthorSection = ({
       {title && <div style={sectionTitleStyle}>{title}</div>}
       <div style={authorInfoStyle}>{authorInfo}</div>
       <div style={contentBodyStyle} className="content-body">
-        <ExpandableText 
-          text={children}
-          maxHeight={150}
-          showMoreText="더 보기"
-        />
+        {expandableDisabled ? (
+          children
+        ) : (
+          <ExpandableText 
+            text={children}
+            maxHeight={150}
+            showMoreText="더 보기"
+          />
+        )}
       </div>
       
       {showSlider && sliderImages.length > 0 && (

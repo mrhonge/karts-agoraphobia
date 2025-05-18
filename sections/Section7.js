@@ -156,6 +156,7 @@ export default function Section7() {
           title="소품 노트"
           authorInfo="소품 디자이너 이지현 (연극원 무대미술과 예술사 22)"
           sectionIndex={4}
+          expandableDisabled={true}
         >
           {propsDesignerContent}
         </AuthorSection>
