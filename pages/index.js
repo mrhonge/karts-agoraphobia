@@ -16,6 +16,8 @@ export default function Home() {
   const { modalOpen, currentSection, openModal, closeModal } = useModal();
   const [isLoading, setIsLoading] = useState(true);
   const [visibleSections, setVisibleSections] = useState(3); // 처음에 3개 섹션만 표시
+  const [footprints, setFootprints] = useState([]);
+  const [showFootprints, setShowFootprints] = useState(false);
 
   // 페이지 로딩 완료 시 로딩 상태 해제
   useEffect(() => {
@@ -31,6 +33,70 @@ export default function Home() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    let timeoutId;
+    let intervalId;
+
+    function spawnFootprints() {
+      // 화면 크기
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      // 시작점 (여백 고려)
+      const margin = 100;
+      const startX = Math.random() * (w - margin * 2) + margin;
+      const startY = Math.random() * (h - margin * 2) + margin;
+      // 방향 (위, 아래, 대각선 4방향)
+      const angles = [
+        Math.PI * 1.5, // 위
+        Math.PI * 0.5, // 아래
+        Math.PI * 1.25, // 왼쪽 위 대각선
+        Math.PI * 1.75, // 오른쪽 위 대각선
+        Math.PI * 0.25, // 오른쪽 아래 대각선
+        Math.PI * 0.75, // 왼쪽 아래 대각선
+      ];
+      const angle = angles[Math.floor(Math.random() * angles.length)];
+      // 발자국 개수/간격
+      const count = 6;
+      const step = 55 + Math.random() * 15; // px
+      const stride = 18; // 좌우로 벌어지는 정도(px)
+      const animDuration = 2.0;
+      const animDelay = 0.25;
+      const totalDuration = (count - 1) * animDelay + animDuration;
+      const newFootprints = Array.from({ length: count }).map((_, i) => {
+        const dx = Math.cos(angle) * step * i;
+        const dy = Math.sin(angle) * step * i;
+        // 이동 방향에 수직인 각도
+        const perpAngle = angle + Math.PI / 2;
+        const offset = (i % 2 === 0 ? -stride : stride);
+        const px = Math.cos(perpAngle) * offset;
+        const py = Math.sin(perpAngle) * offset;
+        return {
+          x: startX + dx + px,
+          y: startY + dy + py,
+          left: i % 2 === 0,
+          idx: i,
+          angle: (angle * 180) / Math.PI,
+        };
+      });
+      setFootprints(newFootprints);
+      setShowFootprints(true);
+      // 발자국 전체가 사라지는 시간 (마지막 발자국 애니메이션이 끝난 후)
+      timeoutId = setTimeout(() => setShowFootprints(false), totalDuration * 1000);
+    }
+
+    // 최초 1초 후, 이후 4~7초 간격 반복
+    const start = setTimeout(() => {
+      spawnFootprints();
+      intervalId = setInterval(spawnFootprints, 4000 + Math.random() * 3000);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(start);
+      clearInterval(intervalId);
+    };
   }, []);
 
   // 현재 섹션의 제목 가져오기
@@ -49,6 +115,26 @@ export default function Home() {
       
       <div className="container">
         <main>
+          {/* 발자국 효과 - 이미지보다 먼저, zIndex 0 */}
+          <div style={{position:'absolute',left:0,top:0,width:'100vw',height:'100vh',pointerEvents:'none',zIndex:0}}>
+            {showFootprints && footprints.map((fp, i) => (
+              <img
+                key={i}
+                src={fp.left ? "/images/footprint-right-2.png" : "/images/footprint-left-2.png"}
+                alt="footprint"
+                style={{
+                  position: 'absolute',
+                  left: fp.x,
+                  top: fp.y,
+                  width: 44,
+                  height: 60,
+                  opacity: 0,
+                  transform: `rotate(${fp.angle}deg)`,
+                  animation: `footprint-fadeinout 2.0s ${i * 0.25}s forwards`,
+                }}
+              />
+            ))}
+          </div>
           {/* 랜딩 페이지 */}
           <div className="landing-page">
             <OptimizedImage 
@@ -107,6 +193,16 @@ export default function Home() {
           {currentSection && <ModalContent sectionId={currentSection} />}
         </Modal>
       )}
+
+      {/* 스타일 */}
+      <style jsx global>{`
+        @keyframes footprint-fadeinout {
+          0% { opacity: 0; }
+          15% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+      `}</style>
     </>
   );
 }
