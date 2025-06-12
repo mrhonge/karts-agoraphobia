@@ -14,8 +14,8 @@ const ActorImagePopup = ({ actor, onClose }) => {
           <Image 
             src={actor.path} 
             alt={actor.name}
-            width={600}
-            height={720}
+            width={400}
+            height={480}
             className="modal-image"
           />
         </div>
@@ -44,7 +44,7 @@ const ActorImagePopup = ({ actor, onClose }) => {
           border-radius: 10px;
           padding: 1.5rem;
           position: relative;
-          max-width: 90%;
+          max-width: 500px;
           max-height: 90vh;
           text-align: center;
         }
@@ -62,7 +62,7 @@ const ActorImagePopup = ({ actor, onClose }) => {
         }
         
         .modal-image-container {
-          max-height: 80vh;
+          max-height: 70vh;
           overflow: hidden;
           border-radius: 8px;
         }
